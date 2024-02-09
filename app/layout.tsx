@@ -4,6 +4,7 @@ import config from '@/lib/config'
 import type {Metadata, Viewport} from 'next'
 import './globals.css'
 
+
 /**
  * Setup metadata.
  *
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
  */
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#18181b'
+  themeColor: '#111113' // Dark grey
 }
 
 /**
@@ -32,8 +33,11 @@ export const viewport: Viewport = {
  */
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body>
+      <div className="array-tab">
+        <div className="array-tab-center" />
+      </div>
         <Header />
         {children}
         <Footer />

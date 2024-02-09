@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'http://localhost:3000/'
+        hostname: 'http://headless-wordpress.local/'
       }
     ]
   },

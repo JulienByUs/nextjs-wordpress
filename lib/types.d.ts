@@ -55,6 +55,12 @@ export interface Menu {
 }
 
 export interface Page {
+  description: {
+    pageDescription: string;
+    clients: {
+      link: string;
+    }[];
+  }
   author: {
     node: {
       avatar: {

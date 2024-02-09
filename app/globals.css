@@ -1,5 +1,7 @@
 /* https://nextjs.org/docs/app/building-your-application/styling/tailwind-css */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,4 +32,61 @@
     @apply bg-zinc-200 text-zinc-900 dark:bg-zinc-400;
     @apply hover:bg-zinc-300 dark:hover:bg-zinc-500;
   }
+}
+
+body{
+
+  --dot-bg: #111113;
+  --dot-color: white;
+  --dot-size: 1px;
+  --dot-space: 44px;
+
+  background:
+    linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+    var(--dot-color);
+  width: 100%;
+  max-width: 80ch;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+@font-face {
+  font-family: 'Gopher Display';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../public/GopherDisplay-Bold.ttf') format('ttf');
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: "Gopher Display", sans-serif;
+}
+
+a, p, div, span, section{
+  font-family: Inter, sans-serif;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+
+.array-tab {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh + 30px);
+  background: transparent;
+  left: 0;
+  top: -30px;
+  display: flex;
+  flex-direction: row;
+  z-index: -1;
+}
+
+.array-tab-center{
+  width: 100%;
+  max-width: 80ch;
+  height: 100%;
+  border-left: 1px solid rgb(203 213 225 / 20%);
+  border-right: 1px solid rgb(203 213 225 / 20%);
 }

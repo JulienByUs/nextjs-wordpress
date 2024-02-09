@@ -35,6 +35,12 @@ export default async function getPageBySlug(slug: string) {
           metaDesc
           title
         }
+        description {
+        pageDescription
+          clients {
+             link
+          }
+        }
       }
     }
   `

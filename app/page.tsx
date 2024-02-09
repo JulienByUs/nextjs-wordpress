@@ -1,8 +1,4 @@
-import getAllPosts from '@/lib/queries/getAllPosts'
 import getPageBySlug from '@/lib/queries/getPageBySlug'
-import {Post} from '@/lib/types'
-import Image from 'next/image'
-import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
 /**
@@ -12,49 +8,34 @@ import {notFound} from 'next/navigation'
  */
 export default async function Home() {
   // Fetch homepage from WordPress.
-  const homepage = await getPageBySlug('homepage')
+  const homepage = await getPageBySlug('accueil')
 
-  // Fetch posts from WordPress.
-  const posts = await getAllPosts()
-
-  // No data? Bail...
-  if (!posts || !posts.length || !homepage) {
+  if (!homepage) {
     notFound()
   }
 
+
   return (
     <main className="flex flex-col gap-8">
-      <article>
-        <h1 dangerouslySetInnerHTML={{__html: homepage.title}} />
-        <div dangerouslySetInnerHTML={{__html: homepage.content}} />
+      <article className="text-center mt-10">
+        <span className="text-[42px]">👋🏾</span>
+        <h1 className="text-[80px] mb-3">Hello,</h1>
+        <div className="text-[24px] text-[#6D7079] font-light">
+          Ce portfolio est un testament du dévouement de Julien Estanis à créer des expériences numériques exceptionnelles où chaque site web est le résultat d’innombrables heures de finesse de conception et de développement méticuleux.
+        </div>
+
+        <p className="mt-20 mb-[-20px] text-[#6D7079] text([16px] font-light">Reconnu par de grandes entreprises</p>
+        <section className="marquee text-white uppercase font-semibold text-lg py-1 overflow-hidden">
+          <div className="marquee__inner flex space-x-2 items-center justify-center">
+            {homepage.description.clients.map((client, index) => (
+              <div key={index} className="marquee__part flex-shrink-0 px-4">
+                <img src={client.link} alt=""/>
+              </div>
+            ))}
+          </div>
+        </section>
       </article>
 
-      <aside>
-        <h2>Latest Posts</h2>
-        <div className="flex flex-wrap gap-8">
-          {posts.map((post: Post) => (
-            <article className="w-72" key={post.databaseId}>
-              <Image
-                alt={post.featuredImage.node.altText}
-                height={post.featuredImage.node.mediaDetails.height}
-                src={post.featuredImage.node.sourceUrl}
-                width={post.featuredImage.node.mediaDetails.width}
-                priority={true}
-              />
-              <Link href={`/blog/${post.slug}`}>
-                <h2 dangerouslySetInnerHTML={{__html: post.title}} />
-              </Link>
-              <p className="text-sm text-gray-500">
-                {post.commentCount} Comments
-              </p>
-              <div dangerouslySetInnerHTML={{__html: post.excerpt}} />
-              <Link className="button" href={`/blog/${post.slug}`}>
-                View Post
-              </Link>
-            </article>
-          ))}
-        </div>
-      </aside>
     </main>
   )
 }
